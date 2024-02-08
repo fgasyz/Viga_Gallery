@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import './config/themes/light_theme.dart';
+import './config/themes/dark_theme.dart';
+import './config/routes/routes_config.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,12 +14,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: lightTheme(),
+      debugShowCheckedModeBanner: false,
+      darkTheme: darkTheme(),
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MaterialApp(),
+      initialRoute: '/',
+      routes: routesConfig,
     );
   }
 }
