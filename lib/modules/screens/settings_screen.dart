@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:viga_galery/widgets/custom_theme_button.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -8,6 +9,12 @@ class SettingsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Pengaturan'),
+        leading: IconButton(
+            tooltip: 'kembali',
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.arrow_back)),
       ),
       body: LayoutBuilder(
           builder: (context, constraints) => Container(
@@ -47,7 +54,7 @@ class SettingsScreen extends StatelessWidget {
                                       Row(
                                         children: [
                                           Text(
-                                            'Dapatkan paket premium',
+                                            'Beralih paket premium',
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge,
@@ -65,7 +72,7 @@ class SettingsScreen extends StatelessWidget {
                                           'Dengan beralih ke paket premium anda dapat menikmati fitur yang tidak ada di paket biasa.',
                                           style: Theme.of(context)
                                               .textTheme
-                                              .bodySmall,
+                                              .bodyMedium,
                                         ),
                                       ),
                                       const SizedBox(height: 5),
@@ -81,7 +88,7 @@ class SettingsScreen extends StatelessWidget {
                                 ])),
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 5),
                     Card(
                       margin: const EdgeInsets.all(0),
                       shape: RoundedRectangleBorder(
@@ -99,28 +106,33 @@ class SettingsScreen extends StatelessWidget {
                                 ),
                                 Divider(
                                   height: 10,
+                                  thickness: 0.8,
                                   color: Colors.grey.shade300,
                                 ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                Text(
+                                  'Pilihan tema :',
+                                  style: Theme.of(context).textTheme.bodyMedium,
+                                ),
+                                const SizedBox(height: 10),
+                                Column(
                                   children: [
-                                    const Text('Mode Gelap'),
-                                    SizedBox(
-                                      height: 30,
-                                      child: FittedBox(
-                                        fit: BoxFit.fill,
-                                        child: Switch(
-                                          value: true,
-                                          onChanged: (bool value1) {},
-                                        ),
-                                      ),
-                                    ),
+                                    CustomThemeButton(
+                                        title: 'sistem',
+                                        icons: Icons.smartphone,
+                                        themeModeValue: ThemeMode.system),
+                                    CustomThemeButton(
+                                        title: 'terang',
+                                        icons: Icons.light_mode,
+                                        themeModeValue: ThemeMode.light),
+                                    CustomThemeButton(
+                                        title: 'gelap',
+                                        icons: Icons.dark_mode,
+                                        themeModeValue: ThemeMode.dark)
                                   ],
                                 )
                               ])),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 5),
                     Card(
                       margin: const EdgeInsets.all(0),
                       shape: RoundedRectangleBorder(
@@ -138,22 +150,42 @@ class SettingsScreen extends StatelessWidget {
                                 ),
                                 Divider(
                                   height: 10,
+                                  thickness: 0.8,
                                   color: Colors.grey.shade300,
                                 ),
-                                const Row(
+                                const SizedBox(height: 10),
+                                Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text('versi aplikasi'),
-                                    Text('v. 1.0.0'),
+                                    Text('Versi aplikasi saat ini',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium),
+                                    Text(
+                                      'v. 1.0.0',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium,
+                                    ),
                                   ],
                                 ),
-                                const Row(
+                                Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text('pengembang aplikasi'),
-                                    Text('firga ismayoza'),
+                                    Text(
+                                      'Pengembang aplikasi',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium,
+                                    ),
+                                    Text(
+                                      'firga ismayoza',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium,
+                                    ),
                                   ],
                                 )
                               ])),

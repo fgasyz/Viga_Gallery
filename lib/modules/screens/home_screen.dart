@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
-import '../../widgets/custom_filter_dialog.dart';
+import 'package:get/get.dart';
+import 'package:viga_galery/modules/getX/album_controller.dart';
 import '../../widgets/album_card.dart';
+import '../../constants/route_path.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
+
+  final albumController = Get.put(AlbumController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          scrolledUnderElevation: 0.0,
           title: const Text('Viga Gallery'),
           actions: [
             FittedBox(
@@ -16,72 +21,57 @@ class HomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                    onPressed: () {
-                      showDialog(
-                          context: context,
-                          builder: (builder) => const CustomFilterDialog());
-                    },
+                    tooltip: 'urutkan',
+                    onPressed: () {},
                     icon: const Icon(Icons.swap_horiz)),
                 IconButton(
+                    tooltip: 'pengaturan',
                     onPressed: () {
-                      Navigator.pushNamed(context, '/settings');
+                      Navigator.pushNamed(context, RoutePath.setting);
                     },
                     icon: const Icon(Icons.more_horiz))
               ],
             ))
           ],
         ),
-        body: RefreshIndicator(onRefresh: () async {
-          await Future.delayed(const Duration(seconds: 1));
-          return;
-        }, child: LayoutBuilder(builder: (context, constraints) {
+        body: RefreshIndicator(
+            child: LayoutBuilder(builder: (context, constraints) {
           double gridWidth = (constraints.maxWidth - 20) / 3;
           double gridHeight = gridWidth + 33;
           double ratio = gridWidth / gridHeight;
           return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: GridView.count(
-              childAspectRatio: ratio,
-              crossAxisSpacing: 7,
-              mainAxisSpacing: 10,
-              crossAxisCount: 3,
-              children: List.generate(
-                  100,
-                  (index) => AlbumCard(
-                        height: constraints.maxHeight,
-                        width: constraints.maxWidth,
-                      )),
-            ),
-          );
-        })),
+              padding: const EdgeInsets.all(8.0),
+              child: Obx(() {
+                return GridView.count(
+                    childAspectRatio: ratio,
+                    crossAxisSpacing: 7,
+                    mainAxisSpacing: 10,
+                    crossAxisCount: 3,
+                    children: [
+                      ...?albumController.albums?.map((album) =>
+                          GestureDetector(
+                              onTap: () => Navigator.pushNamed(
+                                  context, RoutePath.albumDetail,
+                                  arguments: album),
+                              child: albumCard(
+                                context: context,
+                                album: album,
+                                height: constraints.maxHeight,
+                                width: constraints.maxWidth,
+                              )))
+                    ]);
+              }));
+        }), onRefresh: () async {
+          await albumController.setAlbums();
+        }),
         floatingActionButton: FloatingActionButton.small(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
           onPressed: () {},
-          child: Stack(
-            children: [
-              const Align(
-                  child: Icon(
-                Icons.mail,
-                color: Colors.white,
-              )),
-              Positioned(
-                top: 0,
-                right: -10,
-                child: SizedBox(
-                    height: 20,
-                    child: CircleAvatar(
-                      backgroundColor: Colors.green,
-                      child: Text(
-                        '15',
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodySmall!
-                            .copyWith(color: Colors.white),
-                      ),
-                    )),
-              ),
-            ],
-          ),
+          child: Icon(Icons.add,
+              color: Theme.of(context)
+                  .iconTheme
+                  .copyWith(color: Colors.white)
+                  .color),
         ));
   }
 }

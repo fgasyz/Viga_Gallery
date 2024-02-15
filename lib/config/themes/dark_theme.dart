@@ -4,7 +4,7 @@ ThemeData darkTheme() {
   final ThemeData base = ThemeData.dark();
   return base.copyWith(
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
-          backgroundColor: Color(0xff61677A)),
+          backgroundColor: Color(0xff272829)),
       buttonTheme: ButtonThemeData(
           colorScheme: ColorScheme.fromSeed(
               seedColor: const Color(0xff61677A),
@@ -14,8 +14,9 @@ ThemeData darkTheme() {
           contentTextStyle: TextStyle(color: Colors.white)),
       appBarTheme: const AppBarTheme(
           iconTheme: IconThemeData(color: Colors.white),
-          backgroundColor: Color(0xff272829),
+          backgroundColor: Colors.black45,
           titleTextStyle: TextStyle(color: Colors.white, fontSize: 16),
           actionsIconTheme: IconThemeData(color: Colors.white)),
+      iconTheme: const IconThemeData(color: Colors.white),
       brightness: Brightness.dark);
 }

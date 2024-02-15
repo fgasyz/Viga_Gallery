@@ -1,39 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:photo_gallery/photo_gallery.dart';
+import 'package:transparent_image/transparent_image.dart';
 
-class AlbumCard extends StatelessWidget {
-  const AlbumCard(
-      {this.image,
-      this.name,
-      this.countItem,
-      required this.height,
-      required this.width,
-      Key? key})
-      : super(key: key);
-  final String? image;
-  final String? name;
-  final String? countItem;
-  final double height;
-  final double width;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-        height: height,
-        width: width,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-                child: Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(),
-                        borderRadius: BorderRadius.circular(5)))),
-            Text(name ?? 'unnamed album'),
-            Text(
-              '($countItem)',
-              style: Theme.of(context).textTheme.bodySmall,
-            )
-          ],
-        ));
-  }
+Widget albumCard(
+    {required BuildContext context,
+    required Album album,
+    required double height,
+    required double width}) {
+  return SizedBox(
+      height: height,
+      width: width,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+              child: FadeInImage(
+                  fit: BoxFit.fitWidth,
+                  placeholder: MemoryImage(kTransparentImage),
+                  image:
+                      AlbumThumbnailProvider(album: album, highQuality: true))),
+          Text(album.name ?? 'unnamed album'),
+          Text(
+            '(${album.count}) items',
+            style: Theme.of(context).textTheme.bodySmall,
+          )
+        ],
+      ));
 }
