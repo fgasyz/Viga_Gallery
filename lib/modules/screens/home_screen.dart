@@ -41,26 +41,8 @@ class HomeScreen extends StatelessWidget {
           double ratio = gridWidth / gridHeight;
           return Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Obx(() {
-                return GridView.count(
-                    childAspectRatio: ratio,
-                    crossAxisSpacing: 7,
-                    mainAxisSpacing: 10,
-                    crossAxisCount: 3,
-                    children: [
-                      ...?albumController.albums?.map((album) =>
-                          GestureDetector(
-                              onTap: () => Navigator.pushNamed(
-                                  context, RoutePath.albumDetail,
-                                  arguments: album),
-                              child: albumCard(
-                                context: context,
-                                album: album,
-                                height: constraints.maxHeight,
-                                width: constraints.maxWidth,
-                              )))
-                    ]);
-              }));
+              child: AlbumCard(
+                  ratio: ratio, width: gridWidth, height: gridHeight));
         }), onRefresh: () async {
           await albumController.setAlbums();
         }),

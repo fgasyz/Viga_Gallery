@@ -1,26 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:viga_galery/modules/getX/album_controller.dart';
 import '../../constants/route_path.dart';
+import 'package:photo_gallery/photo_gallery.dart';
+import 'package:get/get.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class AlbumDetailScreen extends StatelessWidget {
-  const AlbumDetailScreen({Key? key}) : super(key: key);
+  AlbumDetailScreen({Key? key}) : super(key: key);
+  final albumController = Get.put(AlbumController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Nama album'),
-            Text(
-              '0 items',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodySmall
-                  ?.copyWith(color: Colors.white),
-            ),
-          ],
-        ),
+        title: Obx(() => Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('${albumController.albumModel.value.currentAlbum}'),
+                Text(
+                  '${albumController.albumModel.value.mediumCount} items',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodySmall
+                      ?.copyWith(color: Colors.white),
+                ),
+              ],
+            )),
       ),
       body: LayoutBuilder(builder: (context, constraints) {
         double gridWidth = (constraints.maxWidth - 20) / 3;
@@ -28,20 +33,29 @@ class AlbumDetailScreen extends StatelessWidget {
         double ratio = gridWidth / gridHeight;
         return Padding(
             padding: const EdgeInsets.all(8.0),
-            child: GridView.count(
-              childAspectRatio: ratio,
-              crossAxisSpacing: 7,
-              mainAxisSpacing: 7,
-              crossAxisCount: 3,
-              children: List.generate(
-                  10,
-                  (int index) => GestureDetector(
+            child: Obx(() => GridView.count(
+                  childAspectRatio: ratio,
+                  crossAxisSpacing: 7,
+                  mainAxisSpacing: 7,
+                  crossAxisCount: 3,
+                  children: [
+                    ...?albumController.albumModel.value.mediums?.map((medium) {
+                      return GestureDetector(
                         onTap: () =>
                             Navigator.pushNamed(context, RoutePath.itemView),
                         child: Container(
-                            height: ratio, width: ratio, color: Colors.yellow),
-                      )),
-            ));
+                          child: FadeInImage(
+                              fit: BoxFit.cover,
+                              placeholder: MemoryImage(kTransparentImage),
+                              image: ThumbnailProvider(
+                                  mediumId: medium.id,
+                                  mediumType: medium.mediumType,
+                                  highQuality: true)),
+                        ),
+                      );
+                    })
+                  ],
+                )));
       }),
     );
   }

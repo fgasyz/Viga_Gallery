@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:viga_galery/widgets/custom_theme_button.dart';
+import '../../constants/route_path.dart';
+import '../../widgets/custom_theme_button.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -76,13 +77,28 @@ class SettingsScreen extends StatelessWidget {
                                         ),
                                       ),
                                       const SizedBox(height: 5),
-                                      Text(
-                                        'Pelajari lebih lanjut >',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodySmall!
-                                            .copyWith(color: Colors.blue),
-                                      )
+                                      SizedBox(
+                                          height: 20,
+                                          child: TextButton(
+                                              style: const ButtonStyle(
+                                                  padding:
+                                                      MaterialStatePropertyAll(
+                                                          EdgeInsets.zero),
+                                                  overlayColor:
+                                                      MaterialStatePropertyAll(
+                                                          Colors.transparent)),
+                                              onPressed: () {
+                                                Navigator.pushNamed(context,
+                                                    RoutePath.upgradeService);
+                                              },
+                                              child: Text(
+                                                'Pelajari lebih lanjut >',
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodySmall!
+                                                    .copyWith(
+                                                        color: Colors.blue),
+                                              )))
                                     ],
                                   ),
                                 ])),
