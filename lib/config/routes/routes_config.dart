@@ -12,5 +12,5 @@ Map<String, Widget Function(BuildContext)> routesConfig = {
   RoutePath.upgradeService: (BuildContext context) =>
       const UpgradeServiceScreen(),
   RoutePath.albumDetail: (BuildContext context) => AlbumDetailScreen(),
-  RoutePath.itemView: (BuildContext context) => const PreviewScreen(),
+  RoutePath.itemView: (BuildContext context) => PreviewScreen(),
 };

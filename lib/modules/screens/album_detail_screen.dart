@@ -41,17 +41,15 @@ class AlbumDetailScreen extends StatelessWidget {
                   children: [
                     ...?albumController.albumModel.value.mediums?.map((medium) {
                       return GestureDetector(
-                        onTap: () =>
-                            Navigator.pushNamed(context, RoutePath.itemView),
-                        child: Container(
-                          child: FadeInImage(
-                              fit: BoxFit.cover,
-                              placeholder: MemoryImage(kTransparentImage),
-                              image: ThumbnailProvider(
-                                  mediumId: medium.id,
-                                  mediumType: medium.mediumType,
-                                  highQuality: true)),
-                        ),
+                        onTap: () => navigator?.pushNamed(RoutePath.itemView,
+                            arguments: medium),
+                        child: FadeInImage(
+                            fit: BoxFit.cover,
+                            placeholder: MemoryImage(kTransparentImage),
+                            image: ThumbnailProvider(
+                                mediumId: medium.id,
+                                mediumType: medium.mediumType,
+                                highQuality: true)),
                       );
                     })
                   ],

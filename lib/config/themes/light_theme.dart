@@ -7,8 +7,8 @@ ThemeData lightTheme() {
           backgroundColor: Color.fromARGB(255, 38, 53, 100)),
       buttonTheme: ButtonThemeData(
           colorScheme: ColorScheme.fromSeed(
-              seedColor: const Color(0xff61677A),
-              primary: const Color(0xff61677A))),
+              seedColor: const Color.fromARGB(255, 38, 53, 100),
+              primary: const Color.fromARGB(255, 38, 53, 100))),
       dialogTheme: const DialogTheme(
           titleTextStyle: TextStyle(fontSize: 16),
           contentTextStyle: TextStyle(color: Colors.white)),
@@ -18,8 +18,15 @@ ThemeData lightTheme() {
           titleTextStyle: TextStyle(color: Colors.white, fontSize: 16),
           actionsIconTheme: IconThemeData(color: Colors.white)),
       brightness: Brightness.light,
-      cardTheme: const CardTheme(
-          color: Color.fromARGB(255, 246, 248, 255),
-          shadowColor: Colors.transparent),
-      iconTheme: IconThemeData(color: Colors.grey[500]));
+      cardTheme: CardTheme(
+          color: Colors.white,
+          shadowColor: Colors.white,
+          elevation: 0.7,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
+      dividerTheme: const DividerThemeData(
+        thickness: 0.8,
+        color: Colors.white,
+      ),
+      iconTheme: const IconThemeData(color: Colors.white, size: 22));
 }

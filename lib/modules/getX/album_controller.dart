@@ -1,18 +1,18 @@
 import 'package:get/get.dart';
 import '../models/album_model.dart';
 import 'package:photo_gallery/photo_gallery.dart';
-import '../../utils/helpers/permission_helper.dart';
+import './permission_controller.dart';
 
 class AlbumController extends GetxController {
   var albumModel = AlbumModel().obs;
+  PermissionController permissionController = Get.find();
   dynamic listAlbum;
   dynamic listMedia;
 
   @override
   void onInit() {
-    PermissionHelper.checkAllPermission();
-    setAlbums();
     super.onInit();
+    ever(permissionController.status, (_) => setAlbums());
   }
 
   setAlbums() async {

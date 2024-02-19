@@ -28,7 +28,7 @@ class AlbumCard extends StatelessWidget {
                   ?.map((album) => GestureDetector(
                       onTap: () {
                         albumController.setMedia(album);
-                        Navigator.pushNamed(context, RoutePath.albumDetail);
+                        navigator?.pushNamed(RoutePath.albumDetail);
                       },
                       child: SizedBox(
                           height: height,
@@ -43,7 +43,7 @@ class AlbumCard extends StatelessWidget {
                                           MemoryImage(kTransparentImage),
                                       image: AlbumThumbnailProvider(
                                           album: album, highQuality: true))),
-                              Text('${album.name}' ?? 'album tidak dikenal'),
+                              Text('${album.name}'),
                               Text(
                                 '(${album.count}) items',
                                 style: Theme.of(context).textTheme.bodySmall,

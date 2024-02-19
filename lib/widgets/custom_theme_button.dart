@@ -12,7 +12,7 @@ class CustomThemeButton extends StatelessWidget {
   final String title;
   final IconData icons;
   final ThemeMode themeModeValue;
-  var themeController = Get.put(ThemeController());
+  final themeController = Get.put(ThemeController());
   @override
   Widget build(BuildContext context) {
     return Padding(

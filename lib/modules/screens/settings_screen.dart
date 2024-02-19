@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../constants/route_path.dart';
 import '../../widgets/custom_theme_button.dart';
+import 'package:get/get.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -88,7 +89,7 @@ class SettingsScreen extends StatelessWidget {
                                                       MaterialStatePropertyAll(
                                                           Colors.transparent)),
                                               onPressed: () {
-                                                Navigator.pushNamed(context,
+                                                navigator?.pushNamed(
                                                     RoutePath.upgradeService);
                                               },
                                               child: Text(
@@ -120,11 +121,7 @@ class SettingsScreen extends StatelessWidget {
                                   'Tampilan',
                                   style: Theme.of(context).textTheme.bodyLarge,
                                 ),
-                                Divider(
-                                  height: 10,
-                                  thickness: 0.8,
-                                  color: Colors.grey.shade300,
-                                ),
+                                const Divider(),
                                 Text(
                                   'Pilihan tema :',
                                   style: Theme.of(context).textTheme.bodyMedium,
@@ -164,11 +161,7 @@ class SettingsScreen extends StatelessWidget {
                                   'Info Aplikasi',
                                   style: Theme.of(context).textTheme.bodyLarge,
                                 ),
-                                Divider(
-                                  height: 10,
-                                  thickness: 0.8,
-                                  color: Colors.grey.shade300,
-                                ),
+                                const Divider(),
                                 const SizedBox(height: 10),
                                 Row(
                                   mainAxisAlignment:

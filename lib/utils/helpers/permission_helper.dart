@@ -14,11 +14,13 @@ class PermissionHelper {
   }
 
   static checkAllPermission() async {
+    late dynamic status;
     if (await checkStoragePermission() ||
         await checkPhotosPermission() && await checkVideosPermission()) {
-      return true;
+      status = true;
     } else {
-      return false;
+      status = false;
     }
+    return status;
   }
 }
