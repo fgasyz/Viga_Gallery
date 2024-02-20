@@ -5,6 +5,15 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const TextField();
+    return SizedBox(
+        child: TextField(
+      maxLength: 15,
+      decoration: InputDecoration(
+        contentPadding: EdgeInsets.symmetric(horizontal: 10),
+        hintText: 'Masukkan nama album',
+        hintStyle: Theme.of(context).textTheme.bodyMedium,
+        border: const OutlineInputBorder(),
+      ),
+    ));
   }
 }

@@ -40,7 +40,7 @@ class CustomThemeButton extends StatelessWidget {
                     const SizedBox(width: 10),
                     Text(
                       title,
-                      style: Theme.of(context).textTheme.bodyMedium,
+                      style: Theme.of(context).textTheme.bodySmall,
                     )
                   ],
                 ),

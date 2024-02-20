@@ -21,12 +21,12 @@ ThemeData lightTheme() {
       cardTheme: CardTheme(
           color: Colors.white,
           shadowColor: Colors.white,
-          elevation: 0.7,
+          elevation: 1,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
-      dividerTheme: const DividerThemeData(
+      dividerTheme: DividerThemeData(
         thickness: 0.8,
-        color: Colors.white,
+        color: Colors.grey.withOpacity(0.8),
       ),
       iconTheme: const IconThemeData(color: Colors.white, size: 22));
 }

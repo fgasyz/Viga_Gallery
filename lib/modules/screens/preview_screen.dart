@@ -14,7 +14,7 @@ class PreviewScreen extends StatelessWidget {
         child: Scaffold(
       body: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) => Center(
-                child: Container(
+                child: SizedBox(
                   height: constraints.maxHeight,
                   width: constraints.maxWidth,
                   child: Stack(

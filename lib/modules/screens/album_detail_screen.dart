@@ -13,6 +13,7 @@ class AlbumDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        scrolledUnderElevation: 0.0,
         title: Obx(() => Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -43,13 +44,25 @@ class AlbumDetailScreen extends StatelessWidget {
                       return GestureDetector(
                         onTap: () => navigator?.pushNamed(RoutePath.itemView,
                             arguments: medium),
-                        child: FadeInImage(
-                            fit: BoxFit.cover,
-                            placeholder: MemoryImage(kTransparentImage),
-                            image: ThumbnailProvider(
-                                mediumId: medium.id,
-                                mediumType: medium.mediumType,
-                                highQuality: true)),
+                        child: Stack(
+                          children: [
+                            SizedBox(
+                                height: gridHeight,
+                                width: gridWidth,
+                                child: FadeInImage(
+                                    fit: BoxFit.cover,
+                                    placeholder: MemoryImage(kTransparentImage),
+                                    image: ThumbnailProvider(
+                                        mediumId: medium.id,
+                                        mediumType: medium.mediumType,
+                                        highQuality: true))),
+                            Align(
+                                alignment: Alignment.topRight,
+                                child: medium.mediumType == MediumType.image
+                                    ? const Icon(Icons.photo)
+                                    : const Icon(Icons.videocam))
+                          ],
+                        ),
                       );
                     })
                   ],

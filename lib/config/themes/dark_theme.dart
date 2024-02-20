@@ -22,9 +22,9 @@ ThemeData darkTheme() {
           shadowColor: Colors.transparent,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
-      dividerTheme: const DividerThemeData(
+      dividerTheme: DividerThemeData(
         thickness: 0.8,
-        color: Colors.white,
+        color: Colors.white.withOpacity(0.8),
       ),
       brightness: Brightness.dark);
 }

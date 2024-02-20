@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../constants/route_path.dart';
+import 'package:viga_galery/widgets/custom_bottom_sheet.dart';
 import '../../widgets/custom_theme_button.dart';
 import 'package:get/get.dart';
 
@@ -59,7 +59,7 @@ class SettingsScreen extends StatelessWidget {
                                             'Beralih paket premium',
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .bodyLarge,
+                                                .bodyMedium,
                                           ),
                                           const Icon(
                                             Icons.workspace_premium_rounded,
@@ -74,7 +74,7 @@ class SettingsScreen extends StatelessWidget {
                                           'Dengan beralih ke paket premium anda dapat menikmati fitur yang tidak ada di paket biasa.',
                                           style: Theme.of(context)
                                               .textTheme
-                                              .bodyMedium,
+                                              .bodySmall,
                                         ),
                                       ),
                                       const SizedBox(height: 5),
@@ -89,8 +89,25 @@ class SettingsScreen extends StatelessWidget {
                                                       MaterialStatePropertyAll(
                                                           Colors.transparent)),
                                               onPressed: () {
-                                                navigator?.pushNamed(
-                                                    RoutePath.upgradeService);
+                                                Get.bottomSheet(
+                                                    CustomBottomSheet(
+                                                        maxHeight: constraints
+                                                            .maxHeight,
+                                                        maxWidth: constraints
+                                                            .maxWidth),
+                                                    backgroundColor:
+                                                        Theme.of(context)
+                                                            .cardColor,
+                                                    shape: const RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius.only(
+                                                                topLeft: Radius
+                                                                    .circular(
+                                                                        5),
+                                                                topRight: Radius
+                                                                    .circular(
+                                                                        5))),
+                                                    isScrollControlled: true);
                                               },
                                               child: Text(
                                                 'Pelajari lebih lanjut >',
@@ -119,12 +136,12 @@ class SettingsScreen extends StatelessWidget {
                               children: [
                                 Text(
                                   'Tampilan',
-                                  style: Theme.of(context).textTheme.bodyLarge,
+                                  style: Theme.of(context).textTheme.bodyMedium,
                                 ),
                                 const Divider(),
                                 Text(
                                   'Pilihan tema :',
-                                  style: Theme.of(context).textTheme.bodyMedium,
+                                  style: Theme.of(context).textTheme.bodySmall,
                                 ),
                                 const SizedBox(height: 10),
                                 Column(
@@ -159,10 +176,10 @@ class SettingsScreen extends StatelessWidget {
                               children: [
                                 Text(
                                   'Info Aplikasi',
-                                  style: Theme.of(context).textTheme.bodyLarge,
+                                  style: Theme.of(context).textTheme.bodyMedium,
                                 ),
                                 const Divider(),
-                                const SizedBox(height: 10),
+                                const SizedBox(height: 5),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -170,12 +187,11 @@ class SettingsScreen extends StatelessWidget {
                                     Text('Versi aplikasi saat ini',
                                         style: Theme.of(context)
                                             .textTheme
-                                            .bodyMedium),
+                                            .bodySmall),
                                     Text(
                                       'v. 1.0.0',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium,
+                                      style:
+                                          Theme.of(context).textTheme.bodySmall,
                                     ),
                                   ],
                                 ),
@@ -185,18 +201,43 @@ class SettingsScreen extends StatelessWidget {
                                   children: [
                                     Text(
                                       'Pengembang aplikasi',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium,
+                                      style:
+                                          Theme.of(context).textTheme.bodySmall,
                                     ),
                                     Text(
                                       'firga ismayoza',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium,
+                                      style:
+                                          Theme.of(context).textTheme.bodySmall,
                                     ),
                                   ],
                                 )
+                              ])),
+                    ),
+                    const SizedBox(height: 5),
+                    Card(
+                      margin: const EdgeInsets.all(0),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5)),
+                      child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Info Tambahan',
+                                  style: Theme.of(context).textTheme.bodyMedium,
+                                ),
+                                const Divider(),
+                                const SizedBox(height: 5),
+                                Text('Nilai Kami',
+                                    style:
+                                        Theme.of(context).textTheme.bodySmall),
+                                Text(
+                                  'Kebijakan Privasi',
+                                  style: Theme.of(context).textTheme.bodySmall,
+                                ),
                               ])),
                     )
                   ],

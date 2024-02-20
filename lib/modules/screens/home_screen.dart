@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:viga_galery/modules/getX/album_controller.dart';
+import 'package:viga_galery/widgets/custom_text_field.dart';
 import '../../widgets/custom_elevated_button.dart';
 import '../../modules/getX/permission_controller.dart';
 import '../../widgets/album_card.dart';
@@ -17,22 +18,32 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         scrolledUnderElevation: 0.0,
-        title: const Row(
-          children: [
-            Icon(Icons.collections),
-            SizedBox(width: 10),
-            Text('Viga Gallery')
-          ],
-        ),
+        title:
+            const Text('VIGA', style: TextStyle(fontWeight: FontWeight.bold)),
         actions: [
           FittedBox(
               child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              Stack(
+                children: [
+                  IconButton(
+                      tooltip: 'pemberitahuan',
+                      onPressed: () {},
+                      icon: const Icon(Icons.notifications)),
+                  const Positioned(
+                      top: 12,
+                      right: 15,
+                      child: CircleAvatar(
+                        backgroundColor: Colors.green,
+                        maxRadius: 5,
+                      ))
+                ],
+              ),
               IconButton(
-                  tooltip: 'pemberitahuan',
+                  tooltip: 'kamera',
                   onPressed: () {},
-                  icon: const Icon(Icons.notifications_active)),
+                  icon: const Icon(Icons.photo_camera)),
               IconButton(
                   tooltip: 'urutkan',
                   onPressed: () {},
@@ -86,16 +97,48 @@ class HomeScreen extends StatelessWidget {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  const Expanded(
+                                  Expanded(
                                       child: CustomElevatedButton(
-                                          title: 'Buat Album',
-                                          icon: Icons.add)),
-                                  SizedBox(width: constraints.maxWidth * 0.05),
-                                  const Expanded(
-                                      child: CustomElevatedButton(
+                                    onCallback: () {},
                                     title: 'Ditandai',
                                     icon: Icons.bookmark,
+                                    breadcumb: const CircleAvatar(
+                                      backgroundColor: Colors.green,
+                                      maxRadius: 5,
+                                    ),
                                   )),
+                                  SizedBox(width: constraints.maxWidth * 0.05),
+                                  Expanded(
+                                      child: CustomElevatedButton(
+                                          onCallback: () {
+                                            Get.defaultDialog(
+                                                contentPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 10),
+                                                radius: 5,
+                                                title: 'Tambah Album',
+                                                titleStyle: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyLarge,
+                                                titlePadding:
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 5),
+                                                content: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    const SizedBox(height: 10),
+                                                    const CustomTextField(),
+                                                    const SizedBox(height: 10),
+                                                    CustomElevatedButton(
+                                                        title: 'Buat',
+                                                        onCallback: () {})
+                                                  ],
+                                                ));
+                                          },
+                                          title: 'Buat Album',
+                                          icon: Icons.library_add)),
                                 ],
                               ),
                             )
