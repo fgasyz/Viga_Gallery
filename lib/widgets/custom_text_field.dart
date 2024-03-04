@@ -9,7 +9,7 @@ class CustomTextField extends StatelessWidget {
         child: TextField(
       maxLength: 15,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(horizontal: 10),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 10),
         hintText: 'Masukkan nama album',
         hintStyle: Theme.of(context).textTheme.bodyMedium,
         border: const OutlineInputBorder(),
