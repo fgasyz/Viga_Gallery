@@ -1,6 +1,12 @@
 # Viga Gallery
 aplikasi galery 
 
+### Fitur :
+- List album 
+- List media
+- Preview image
+- Play video
+
 ### Screenshoot :
 
 ### Light Mode
